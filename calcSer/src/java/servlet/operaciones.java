@@ -32,15 +32,33 @@ public class operaciones extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+        try (PrintWriter out = response.getWriter()){
+            double NumeroUno = Double.parseDouble(request.getParameter("NumeroUno"));
+            double NumeroDos = Double.parseDouble(request.getParameter("NumeroDos"));
+            String Operacion = request.getParameter("operacion");
+            double ResultadoOperacion = 0;
+            
+            if(Operacion.equals("suma"))
+            {
+                ResultadoOperacion = NumeroUno + NumeroDos;
+            }else if(Operacion.equals("resta"))
+            {
+                ResultadoOperacion = NumeroUno - NumeroDos;
+            }else if(Operacion.equals("multiplicacion"))
+            {
+                ResultadoOperacion = NumeroUno * NumeroDos;
+            }else if(Operacion.equals("division"))
+            {
+                ResultadoOperacion = NumeroUno / NumeroDos;
+            }
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Operaciones</title>");            
+            out.println("<title>Servlet CalculadoraServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Operaciones at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Resultado de la operación: " + ResultadoOperacion + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
